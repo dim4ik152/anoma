@@ -229,7 +229,7 @@ defmodule Anoma.TransparentResource.Transaction do
   end
 end
 
-defimpl Anoma.RM.Intent, for: Anoma.TransparentResource.Transaction do
+defimpl Anoma.RM.Transaction, for: Anoma.TransparentResource.Transaction do
   alias Anoma.TransparentResource.Transaction
 
   @impl true
@@ -251,4 +251,7 @@ defimpl Anoma.RM.Intent, for: Anoma.TransparentResource.Transaction do
   def commitments(tx = %Transaction{}) do
     Transaction.commitments(tx)
   end
+
+  @impl true
+  def compose_pre_check(_, _), do: true
 end
